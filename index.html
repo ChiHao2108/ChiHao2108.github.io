@@ -1,327 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ChiHao - IT Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome CDN for icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    body, html {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0d0d23 0%, #000000 100%);
+      color: #ffffff;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Canvas background */
-    #bgCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Container */
-    .container {
-      position: relative;
-      z-index: 10;
-      max-width: 900px;
-      margin: 2rem auto 4rem;
-      padding: 1rem 2rem;
-      background: rgba(12, 20, 30, 0.8);
-      border-radius: 15px;
-      box-shadow: 0 0 30px #58a6ff33;
-      backdrop-filter: blur(10px);
-    }
-
-    /* Header */
     header {
       text-align: center;
-      margin-bottom: 3rem;
-    }
-    header h1 {
-      font-size: 3.5rem;
-      color: #58a6ff;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-shadow:
-        0 0 8px #58a6ff,
-        0 0 15px #58a6ff,
-        0 0 20px #58a6ff;
-      animation: glow 3s ease-in-out infinite alternate;
+      padding: 4rem 1rem 2rem;
+      z-index: 10;
+      position: relative;
     }
 
-    @keyframes glow {
-      from {
-        text-shadow:
-          0 0 8px #58a6ff,
-          0 0 15px #58a6ff,
-          0 0 20px #58a6ff;
-      }
-      to {
-        text-shadow:
-          0 0 12px #1f6feb,
-          0 0 30px #1f6feb,
-          0 0 45px #1f6feb;
-      }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: #00ffc3;
+      text-shadow: 0 0 10px #00ffc3;
+      margin-bottom: 1rem;
     }
 
     header p {
-      margin-top: 10px;
-      font-size: 1.25rem;
-      color: #8b949e;
+      font-size: 1.2rem;
+      color: #aaa;
     }
 
-    /* Section titles */
-    h2 {
+    .section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .section h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #58a6ff;
-      border-bottom: 2px solid #2386d6;
-      padding-bottom: 0.25rem;
+      color: #00e6e6;
+      border-bottom: 2px solid #00ffc3;
+      display: inline-block;
     }
 
-    /* About */
-    #about p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #adbac7;
+    .section ul {
+      list-style: none;
     }
 
-    /* Skills icons */
-    #skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .skill-icon {
-      font-size: 3rem;
-      color: #8b949e;
-      transition: transform 0.3s ease, color 0.3s ease;
-      cursor: default;
-      filter: drop-shadow(0 0 2px #2386d6);
-    }
-    .skill-icon:hover {
-      color: #58a6ff;
-      transform: scale(1.3) rotate(15deg);
-      filter: drop-shadow(0 0 10px #58a6ff);
+    .section ul li {
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      position: relative;
     }
 
-    /* Projects */
-    #projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .project-card {
-      background: #161b22;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 0 15px #2386d6aa;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-      color: #c9d1d9;
-    }
-    .project-card:hover {
-      box-shadow: 0 0 25px #58a6ff;
-      transform: translateY(-5px);
-    }
-    .project-card h3 {
-      margin-bottom: 0.7rem;
-      color: #58a6ff;
-    }
-    .project-card p {
-      font-size: 1rem;
-      color: #8b949e;
-      line-height: 1.4;
+    .section ul li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: #00ffc3;
     }
 
-    /* Contact */
-    #contact a {
-      color: #58a6ff;
-      text-decoration: underline;
-      transition: color 0.3s ease;
+    canvas#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
-    #contact a:hover {
-      color: #1f6feb;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.5rem;
-      }
-      #skills {
-        gap: 1rem;
-      }
-      .skill-icon {
-        font-size: 2.5rem;
-      }
-    }
-
   </style>
 </head>
 <body>
-  <!-- Background canvas for floating icons -->
-  <canvas id="bgCanvas"></canvas>
+  <canvas id="bg"></canvas>
+  <header>
+    <h1>Nguyễn Văn A</h1>
+    <p>Creative Web Developer | Frontend Artist | Tech Dreamer</p>
+  </header>
 
-  <div class="container" role="main">
-    <header>
-      <h1>Trần Chí Hào</h1>
-      <p>Web Developer & Software Engineer</p>
-    </header>
+  <section class="section">
+    <h2>💼 Projects</h2>
+    <ul>
+      <li>Interactive AI Mirror using Face Detection</li>
+      <li>Drone Show Simulator with Turtle Graphics</li>
+      <li>Modern Furniture E-Commerce System</li>
+    </ul>
+  </section>
 
-    <section id="about" aria-label="About me">
-      <h2>Giới thiệu</h2>
-      <p>
-        Xin chào! Tôi là Trần Chí Hào, đam mê công nghệ và phát triển phần mềm. Tôi thích khám phá các công nghệ mới và tạo ra các sản phẩm web chất lượng cao.
-      </p>
-    </section>
+  <section class="section">
+    <h2>🛠️ Skills</h2>
+    <ul>
+      <li>HTML5, CSS3, JavaScript, Tailwind</li>
+      <li>Python, Flask, OpenCV, Mediapipe</li>
+      <li>MySQL, MongoDB, Firebase</li>
+      <li>Figma, Adobe XD, Canva</li>
+    </ul>
+  </section>
 
-    <section id="skills" aria-label="Skills">
-      <h2>Kỹ năng</h2>
-      <div>
-        <i class="fab fa-html5 skill-icon" title="HTML5"></i>
-        <i class="fab fa-css3-alt skill-icon" title="CSS3"></i>
-        <i class="fab fa-js-square skill-icon" title="JavaScript"></i>
-        <i class="fab fa-react skill-icon" title="React"></i>
-        <i class="fab fa-node-js skill-icon" title="Node.js"></i>
-        <i class="fab fa-git-alt skill-icon" title="Git"></i>
-        <i class="fab fa-github skill-icon" title="GitHub"></i>
-      </div>
-    </section>
-
-    <section id="projects" aria-label="Projects">
-      <h2>Dự án nổi bật</h2>
-      <article class="project-card" tabindex="0" aria-describedby="desc1">
-        <h3>HKT-SHIRT SOCCER</h3>
-        <p id="desc1">Trang web bán áo bóng đá chuyên nghiệp triển khai trên nền tảng InfinityFree.</p>
-      </article>
-      <article class="project-card" tabindex="0" aria-describedby="desc2">
-        <h3>Rap Việt Game</h3>
-        <p id="desc2">Game chọn thí sinh theo format chương trình Rap Việt sử dụng HTML, CSS, JavaScript.</p>
-      </article>
-    </section>
-
-    <section id="contact" aria-label="Contact information" style="margin-top: 3rem;">
-      <h2>Liên hệ</h2>
-      <p>Email: <a href="mailto:chihao2108@gmail.com">chihao2108@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/ChiHao2108" target="_blank" rel="noopener noreferrer">github.com/ChiHao2108</a></p>
-    </section>
-  </div>
+  <section class="section">
+    <h2>📞 Contact</h2>
+    <ul>
+      <li>Email: nguyenvana@example.com</li>
+      <li>Phone: +84 912 345 678</li>
+      <li>GitHub: github.com/nguyenvana</li>
+    </ul>
+  </section>
 
   <script>
-    // Background floating icons animation on canvas
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let icons = [];
-    const iconList = [
-      "\uf13b", // HTML5
-      "\uf13c", // CSS3
-      "\uf3b8", // JS square
-      "\uf41b", // React
-      "\uf3d3", // Node.js
-      "\uf1d3", // Git
-      "\uf09b"  // GitHub
-    ];
-    const iconFont = '900 30px "Font Awesome 6 Brands"';
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    let stars = [];
 
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+    function resizeCanvas() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
     }
 
-    class FloatingIcon {
-      constructor(x, y, dx, dy, char) {
-        this.x = x;
-        this.y = y;
-        this.dx = dx;
-        this.dy = dy;
-        this.char = char;
-        this.size = 30 + Math.random() * 10;
-        this.opacity = 0.3 + Math.random() * 0.5;
-        this.angle = Math.random() * 2 * Math.PI;
-        this.angleSpeed = 0.01 + Math.random() * 0.02;
-      }
-      draw() {
-        ctx.save();
-        ctx.font = `${this.size}px "Font Awesome 6 Brands"`;
-        ctx.fillStyle = `rgba(88, 166, 255, ${this.opacity})`;
-        ctx.translate(this.x, this.y);
-        ctx.rotate(Math.sin(this.angle) * 0.3);
-        ctx.fillText(this.char, 0, 0);
-        ctx.restore();
-      }
-      update() {
-        this.x += this.dx;
-        this.y += this.dy;
-        this.angle += this.angleSpeed;
-
-        // Wrap around screen
-        if (this.x > width + this.size) this.x = -this.size;
-        if (this.x < -this.size) this.x = width + this.size;
-        if (this.y > height + this.size) this.y = -this.size;
-        if (this.y < -this.size) this.y = height + this.size;
-
-        this.draw();
+    function createStars(count) {
+      stars = [];
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          radius: Math.random() * 1.5,
+          alpha: Math.random(),
+          dx: (Math.random() - 0.5) * 0.5,
+          dy: (Math.random() - 0.5) * 0.5
+        });
       }
     }
 
-    function initIcons() {
-      icons = [];
-      for (let i = 0; i < 50; i++) {
-        const char = iconList[Math.floor(Math.random() * iconList.length)];
-        const x = Math.random() * width;
-        const y = Math.random() * height;
-        const dx = (Math.random() - 0.5) * 0.3;
-        const dy = (Math.random() - 0.5) * 0.3;
-        icons.push(new FloatingIcon(x, y, dx, dy, char));
+    function drawStars() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "white";
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+
+        star.x += star.dx;
+        star.y += star.dy;
+
+        if (star.x < 0 || star.x > w || star.y < 0 || star.y > h) {
+          star.x = Math.random() * w;
+          star.y = Math.random() * h;
+        }
       }
+      requestAnimationFrame(drawStars);
     }
 
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      icons.forEach(icon => icon.update());
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-      resize();
-      initIcons();
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      createStars(300);
     });
 
-    // Load FontAwesome brand font before starting animation
-    const faFont = new FontFace('Font Awesome 6 Brands', 'url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2)');
-    faFont.load().then(() => {
-      document.fonts.add(faFont);
-      resize();
-      initIcons();
-      animate();
-    });
+    resizeCanvas();
+    createStars(300);
+    drawStars();
   </script>
 </body>
 </html>
