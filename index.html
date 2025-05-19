@@ -2,70 +2,188 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChiHao's Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- AOS Animate on Scroll CSS -->
+  <link
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    rel="stylesheet"
+  />
+
   <style>
+    /* Body & font */
     body {
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: #f9fafb;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    /* Container fade-in animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation 1s ease forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Header styling */
     header {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      margin: 20px;
+      margin: 20px auto;
       padding: 30px;
+      max-width: 900px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
     }
+
+    /* Glowing animated heading */
     h1 {
       font-size: 3rem;
       font-weight: 700;
       color: #fbbf24;
+      animation: glowing 3s ease-in-out infinite;
+      margin-bottom: 0.5rem;
     }
+
+    @keyframes glowing {
+      0%,
+      100% {
+        text-shadow:
+          0 0 5px #fbbf24,
+          0 0 10px #fbbf24,
+          0 0 20px #fcd34d,
+          0 0 30px #fcd34d,
+          0 0 40px #fbbf24,
+          0 0 50px #fcd34d;
+        color: #fbbf24;
+      }
+      50% {
+        text-shadow: none;
+        color: #fffacd;
+      }
+    }
+
+    header p {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #f3e8ff;
+      margin-top: 0;
+    }
+
+    /* Section styling */
+    section {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      margin: 20px auto;
+      padding: 25px;
+      max-width: 900px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease, background 0.4s ease,
+        box-shadow 0.4s ease, color 0.4s ease;
+      cursor: default;
+      color: #f9fafb;
+    }
+
+    /* Hover effect on section */
+    section:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #fbbf24, #fcd34d);
+      box-shadow: 0 0 30px #fbbf24;
+      color: #1f2937; /* dark text on bright background */
+    }
+
+    /* Section headings */
     h2 {
       font-size: 2rem;
       margin-bottom: 20px;
-      color: #fcd34d;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      color: inherit;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     }
-    section {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      margin: 20px;
-      padding: 25px;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s;
+
+    /* Project cards grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
     }
-    section:hover {
-      transform: scale(1.02);
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+      transition: box-shadow 0.3s ease;
+      color: inherit;
     }
+
+    .project-card:hover {
+      box-shadow: 0 0 20px #fbbf24;
+    }
+
+    .project-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: inherit;
+    }
+
+    /* Links styling */
     a {
       color: #fcd34d;
       text-decoration: underline;
+      transition: color 0.3s ease;
     }
+
+    a:hover {
+      color: #fbbf24;
+    }
+
+    /* Footer */
     footer {
-      margin-top: 20px;
+      margin: 40px auto 20px;
       padding: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      max-width: 900px;
+      text-align: center;
+      color: #d1d5db;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header class="text-center">
+  <header class="fade-in" data-aos="fade-down">
     <h1>Trần Chí Hào</h1>
     <p>Web Developer | Software Engineer | Tech Enthusiast</p>
   </header>
 
-  <section>
+  <section class="fade-in" data-aos="fade-up" data-aos-delay="100">
     <h2>Giới thiệu</h2>
-    <p>Xin chào! Tôi là Trần Chí Hào, một lập trình viên đam mê xây dựng các sản phẩm web chất lượng cao. Tôi yêu thích học hỏi và không ngừng phát triển bản thân qua các dự án thực tế.</p>
+    <p>
+      Xin chào! Tôi là Trần Chí Hào, một lập trình viên đam mê xây dựng các
+      sản phẩm web chất lượng cao. Tôi yêu thích học hỏi và không ngừng phát
+      triển bản thân qua các dự án thực tế.
+    </p>
   </section>
 
-  <section>
+  <section class="fade-in" data-aos="fade-up" data-aos-delay="200">
     <h2>Kỹ năng</h2>
     <ul class="list-disc list-inside">
       <li>HTML, CSS, JavaScript</li>
@@ -76,28 +194,42 @@
     </ul>
   </section>
 
-  <section>
+  <section class="fade-in" data-aos="fade-up" data-aos-delay="300">
     <h2>Dự án</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="bg-white bg-opacity-20 p-4 rounded shadow">
-        <h3 class="text-xl font-bold">HKT-SHIRT SOCCER</h3>
-        <p>Một trang web bán áo bóng đá chuyên nghiệp, triển khai trên InfinityFree.</p>
+    <div class="projects-grid">
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="350">
+        <h3>HKT-SHIRT SOCCER</h3>
+        <p>
+          Một trang web bán áo bóng đá chuyên nghiệp, triển khai trên InfinityFree.
+        </p>
       </div>
-      <div class="bg-white bg-opacity-20 p-4 rounded shadow">
-        <h3 class="text-xl font-bold">Rap Việt Game</h3>
-        <p>Game tuyển chọn thí sinh theo format chương trình Rap Việt, sử dụng HTML, CSS, JavaScript.</p>
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
+        <h3>Rap Việt Game</h3>
+        <p>
+          Game tuyển chọn thí sinh theo format chương trình Rap Việt, sử dụng HTML, CSS, JavaScript.
+        </p>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="fade-in" data-aos="fade-up" data-aos-delay="400">
     <h2>Liên hệ</h2>
     <p>Email: <a href="mailto:chihao2108@gmail.com">chihao2108@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/ChiHao2108">github.com/ChiHao2108</a></p>
+    <p>GitHub: <a href="https://github.com/ChiHao2108" target="_blank" rel="noopener noreferrer">github.com/ChiHao2108</a></p>
   </section>
 
-  <footer class="text-center text-gray-200">
-    &copy; 2025 Trần Chí Hào. All rights reserved.
+  <footer class="fade-in" data-aos="fade-up" data-aos-delay="500">
+    © 2025 Trần Chí Hào. All rights reserved.
   </footer>
+
+  <!-- AOS Animate on Scroll JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  </script>
 </body>
 </html>
